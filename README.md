@@ -11,12 +11,12 @@ Quickstart
 ----------
 
     docker run -d bios/owncloud
-Now you habe a running ownCloud Container with SQLite
+Now you have a running ownCloud Container with SQLite
 
 Options
 -------
 
- - OC_RELATIV_URL_ROOT='/my/owncloud' 
+ - OC_RELATIV_URL_ROOT='/my/owncloud'
  - FQDN='my.owncloud.tld'
  - SSL_SELFSIGNED='true'
  - SSL_PROTOCOLS='TLSv1 TLSv1.1 TLSv1.2'
