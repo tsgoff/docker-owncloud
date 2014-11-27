@@ -43,7 +43,7 @@ else
 fi
 
 /bin/mkdir /data
-/bin/chown nginx:nginx /data
+/bin/chown -R nginx:nginx /data
 
 function fixperm {
        /bin/chown nginx:nginx $PATH$FILE
