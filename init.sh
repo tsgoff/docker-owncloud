@@ -199,7 +199,7 @@ if [ -f /data/backup/config.php ]; then
 else
     echo "create backup"
     /bin/mkdir /data/backup && /bin/chown -R nginx:nginx $_
-    while [ ! -f "$PATH$FILE" ] ; do /bin/sleep 1; done && /bin/cp $PATH$FILE /data/backup/ && /bin/chown nginx:nginx /data/backup/config.php
+    while [ ! -f "$PATH/config.php" ] ; do /bin/sleep 1; done && /bin/cp $PATH/config.php /data/backup/ && /bin/chown nginx:nginx /data/backup/config.php
 fi
 
 wait
