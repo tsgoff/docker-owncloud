@@ -3,8 +3,8 @@
 
 FILE=autoconfig.php
 PATH=/usr/share/nginx/owncloud/config/
-SSL_PROTOCOLS_DEFAULT='SSLv2 TLSv1'
-SSL_CIPHERS_DEFAULT='ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP'
+SSL_PROTOCOLS_DEFAULT='TLSv1 TLSv1.1 TLSv1.2'
+SSL_CIPHERS_DEFAULT='AES256+EECDH:AES256+EDH'
 
 if [ -z "$OC_RELATIV_URL_ROOT" ]; then
         echo "install in Document Root"
@@ -16,13 +16,13 @@ else
         /bin/rm -rf /usr/share/nginx/RWlzYW9iYWluZzBpZXNoCg
         PATH=/usr/share/nginx/owncloud/$OC_RELATIV_URL_ROOT/config/
         #/bin/sed -i "s@owncloud@owncloud$OC_RELATIV_URL_ROOT@g" /etc/nginx/conf.d/default.conf
-        /bin/chown -R nginx:nginx /usr/share/nginx/owncloud/ 
+        /bin/chown -R nginx:nginx /usr/share/nginx/owncloud/
         /bin/echo "<?php header(\"Location: $OC_RELATIV_URL_ROOT\"); die(); ?>" > /usr/share/nginx/owncloud/index.php
 
 fi
 
 if [ -z "$MYSQL_ENV_MYSQL_ROOT_PASSWORD" ]; then
-        echo "no linked mysql detected" 
+        echo "no linked mysql detected"
 else
         echo "linked mysql detected with container id $HOSTNAME and version $MYSQL_ENV_MYSQL_VERSION"
         DB_TYPE=link_mysql
@@ -66,10 +66,10 @@ EOL
         echo 'using linked mysql'
         MYSQL_HOST=`echo $MYSQL_NAME | /bin/awk -F "/" '{print $3}'`
         echo "MySQL host is $MYSQL_HOST"
-	if [ -z "$MYSQL_USER" ]; then
-        	echo "set MySQL user default to: root"
-        	MYSQL_USER=root
-	fi
+  if [ -z "$MYSQL_USER" ]; then
+          echo "set MySQL user default to: root"
+          MYSQL_USER=root
+  fi
         /bin/cat >$PATH$FILE <<EOL
 <?php
 \$AUTOCONFIG = array(
@@ -137,7 +137,7 @@ if [ -z "$FQDN" ]; then
         FQDN="own.cloud"
 else
         echo "found fqdn $FQDN"
-        /bin/sed -i "s@server_name  _@server_name  $FQDN@g" /etc/nginx/conf.d/default.conf 
+        /bin/sed -i "s@server_name  _@server_name  $FQDN@g" /etc/nginx/conf.d/default.conf
 fi
 
 
