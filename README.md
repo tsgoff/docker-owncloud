@@ -5,7 +5,7 @@ https://registry.hub.docker.com/u/bios/owncloud/
 
 **Docker image to start a ownCloud container with CentOS, Nginx, fpm**
 
-optional with linked MySQL/Postgres Container oder external MySQL. Default is SQLite.
+optional with linked MySQL/Postgres Container or external MySQL. Default is SQLite.
 
 Quickstart
 ----------
