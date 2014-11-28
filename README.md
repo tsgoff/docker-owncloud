@@ -10,7 +10,7 @@ optional with linked MySQL/Postgres Container oder external MySQL. Default is SQ
 Quickstart
 ----------
 
-    docker run -d bios/owncloud
+    docker run -d bios/docker-owncloud
 Now you have a running ownCloud Container with SQLite
 
 Options
@@ -32,7 +32,7 @@ Linking to MySQL Container
 
     docker run --name ownmysql -e MYSQL_ROOT_PASSWORD=mysecretpassword -d mysql
     docker run --name owncloud -d -e DB_PREFIX='oc_' \
-    --link ownmysql:mysql bios/owncloud
+    --link ownmysql:mysql bios/docker-owncloud
 
 Linking to PostgreSQL Container
 -------------------------------
@@ -42,7 +42,7 @@ Linking to PostgreSQL Container
     /var/lib/postgresql/data/pg_hba.conf
     docker restart ownpostgres
     docker run --name owncloud -d -e DB_PREFIX='oc_' \
-    --link ownpostgres:postgres bios/owncloud
+    --link ownpostgres:postgres bios/docker-owncloud
 
 External MySQL Server
 ---------------------
@@ -51,7 +51,7 @@ External MySQL Server
     -e DB_USER='owncloud' \
     -e DB_PASSWORD='password' \
     -e DB_NAME='owncloud' \
-    -e DB_PREFIX='_oc' -d bios/owncloud
+    -e DB_PREFIX='_oc' -d bios/docker-owncloud
 
 Example
 -------
@@ -63,4 +63,4 @@ Example with linked MySQL, custom path, custom SSL version / ciphers and custom 
     -e SSL_PROTOCOLS='TLSv1 TLSv1.1 TLSv1.2' \
     -e SSL_CIPHERS='AES256+EECDH:AES256+EDH' \
     -e OC_RELATIV_URL_ROOT='/oc' \
-    -e FQDN='my.hostname.tld' -p 443:443 --link ownmysql:mysql bios/owncloud
+    -e FQDN='my.hostname.tld' -p 443:443 --link ownmysql:mysql bios/docker-owncloud
