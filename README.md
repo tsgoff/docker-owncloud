@@ -51,7 +51,7 @@ External MySQL Server
     -e DB_USER='owncloud' \
     -e DB_PASSWORD='password' \
     -e DB_NAME='owncloud' \
-    -e DB_PREFIX='_oc' \ -d bios/owncloud
+    -e DB_PREFIX='_oc' -d bios/owncloud
 
 Example
 -------
