@@ -6,6 +6,10 @@ PATH=/usr/share/nginx/owncloud/config/
 SSL_PROTOCOLS_DEFAULT='TLSv1 TLSv1.1 TLSv1.2'
 SSL_CIPHERS_DEFAULT='AES256+EECDH:AES256+EDH'
 
+if [ -e /INSTALLED ]; then 
+	echo "restart check: installed"
+else
+	echo "starting installation"
 if [ -z "$OC_RELATIV_URL_ROOT" ]; then
         echo "install in Document Root"
 else
@@ -179,6 +183,10 @@ SSL
 
 fi
 
+/bin/env >>  /INSTALLED
+set >> /INSTALLED
+
+fi
 
 /usr/sbin/php-fpm -F &
 /usr/sbin/nginx -c /etc/nginx/nginx.conf
