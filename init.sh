@@ -191,4 +191,7 @@ fi
 /usr/sbin/php-fpm -F &
 /usr/sbin/nginx -c /etc/nginx/nginx.conf
 
+/bin/mkdir /data/backup && /bin/chown -R nginx:nginx $_
+while [ ! -f $PATH$FILE ] ; do /bin/sleep 1; done && /bin/cp $PATH$FILE /data/backup
+
 wait
