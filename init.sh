@@ -191,7 +191,15 @@ fi
 /usr/sbin/php-fpm -F &
 /usr/sbin/nginx -c /etc/nginx/nginx.conf
 
-/bin/mkdir /data/backup && /bin/chown -R nginx:nginx $_
-while [ ! -f $PATH$FILE ] ; do /bin/sleep 1; done && /bin/cp $PATH$FILE /data/backup
+
+if [ -f /data/backup/config.php ]; then
+    echo "found backup file -> restore"
+    /bin/cp /data/backup/config.php $PATH/config.php
+    /bin/rm $PATH/autoconfig.php
+else
+    echo "create backup"
+    /bin/mkdir /data/backup && /bin/chown -R nginx:nginx $_
+    while [ ! -f "$PATH$FILE" ] ; do /bin/sleep 1; done && /bin/cp $PATH$FILE /data/backup
+fi
 
 wait
