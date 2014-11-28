@@ -55,7 +55,7 @@ External MySQL Server
 
 Example
 -------
-Example with linked MySQL, SSL, custom path, custom SSL version / ciphers and custom FQDN
+Example with linked MySQL, custom path, custom SSL version / ciphers and custom FQDN
 
     docker run --name owncloud --dns 8.8.8.8 -d \
     -e SSL_SELFSIGNED='true' \
