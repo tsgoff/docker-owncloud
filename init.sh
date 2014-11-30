@@ -70,10 +70,10 @@ EOL
             echo 'using linked mysql'
             MYSQL_HOST=`echo $MYSQL_NAME | /bin/awk -F "/" '{print $3}'`
             echo "MySQL host is $MYSQL_HOST"
-      if [ -z "$MYSQL_USER" ]; then
-              echo "set MySQL user default to: root"
-              MYSQL_USER=root
-      fi
+            if [ -z "$MYSQL_USER" ]; then
+                echo "set MySQL user default to: root"
+                MYSQL_USER=root
+            fi
             /bin/cat >$PATH$FILE <<EOL
 <?php
 \$AUTOCONFIG = array(
