@@ -195,11 +195,16 @@ fi
 if [ -f /data/backup/config.php ]; then
     echo "found backup file -> restore"
     /bin/cp /data/backup/config.php $PATH/config.php
+    /bin/chown nginx:nginx $PATH/config.php
     /bin/rm $PATH/autoconfig.php
 else
     echo "create backup"
     /bin/mkdir /data/backup && /bin/chown -R nginx:nginx $_
-    while [ ! -f "$PATH/config.php" ] ; do /bin/sleep 1; done && /bin/cp $PATH/config.php /data/backup/ && /bin/chown nginx:nginx /data/backup/config.php
+    while [ `/usr/bin/wc -l < $PATH/config.php` -lt "6" ]
+      do
+        /bin/sleep 1
+      done
+    /bin/cp $PATH/config.php /data/backup/ && /bin/chown nginx:nginx /data/backup/config.php
 fi
 
 wait
