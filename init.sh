@@ -204,7 +204,7 @@ else
       do
         /bin/sleep 1
       done
-    while [ `/usr/bin/wc -l < $PATH/config.php` -lt "6" ]
+    until /bin/grep installed $PATH/config.php
       do
         /bin/sleep 1
       done
