@@ -200,6 +200,10 @@ if [ -f /data/backup/config.php ]; then
 else
     echo "create backup"
     /bin/mkdir /data/backup && /bin/chown -R nginx:nginx $_
+    while [ ! -f "$PATH/config.php" ]
+      do
+        /bin/sleep 1
+      done
     while [ `/usr/bin/wc -l < $PATH/config.php` -lt "6" ]
       do
         /bin/sleep 1
