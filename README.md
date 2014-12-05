@@ -57,7 +57,7 @@ Example
 -------
 Example with linked MySQL, custom path, custom SSL version / ciphers and custom FQDN
 
-    docker run --name owncloud --dns 8.8.8.8 -d \
+    docker run --name owncloud --dns 8.8.4.4 -d \
     -v /data/owncloud:/data \
     -e SSL_SELFSIGNED='true' \
     -e DB_PREFIX='oc_' \
