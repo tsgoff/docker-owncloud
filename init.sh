@@ -2,7 +2,7 @@
 
 
 FILE=autoconfig.php
-PATH=/usr/share/nginx/owncloud/config/
+OC_PATH=/usr/share/nginx/owncloud/config/
 SSL_PROTOCOLS_DEFAULT='TLSv1 TLSv1.1 TLSv1.2'
 SSL_CIPHERS_DEFAULT='AES256+EECDH:AES256+EDH'
 
@@ -18,7 +18,7 @@ else
             /bin/mkdir -p /usr/share/nginx/owncloud/$OC_RELATIV_URL_ROOT
             /bin/mv /usr/share/nginx/RWlzYW9iYWluZzBpZXNoCg/* /usr/share/nginx/RWlzYW9iYWluZzBpZXNoCg/.??* /usr/share/nginx/owncloud/$OC_RELATIV_URL_ROOT
             /bin/rm -rf /usr/share/nginx/RWlzYW9iYWluZzBpZXNoCg
-            PATH=/usr/share/nginx/owncloud/$OC_RELATIV_URL_ROOT/config/
+            OC_PATH=/usr/share/nginx/owncloud/$OC_RELATIV_URL_ROOT/config/
             #/bin/sed -i "s@owncloud@owncloud$OC_RELATIV_URL_ROOT@g" /etc/nginx/conf.d/default.conf
             /bin/chown -R nginx:nginx /usr/share/nginx/owncloud/
             /bin/echo "<?php header(\"Location: $OC_RELATIV_URL_ROOT\"); die(); ?>" > /usr/share/nginx/owncloud/index.php
@@ -50,13 +50,13 @@ else
     /bin/chown -R nginx:nginx /data
 
     function fixperm {
-           /bin/chown nginx:nginx $PATH$FILE
+           /bin/chown nginx:nginx $OC_PATH$FILE
     }
 
     case $DB_TYPE in
         sqlite)
             echo 'using local sqlite'
-            /bin/cat >$PATH$FILE <<EOL
+            /bin/cat >$OC_PATH$FILE <<EOL
 <?php
 \$AUTOCONFIG = array(
   "directory"     => "/data",
@@ -74,7 +74,7 @@ EOL
                 echo "set MySQL user default to: root"
                 MYSQL_USER=root
             fi
-            /bin/cat >$PATH$FILE <<EOL
+            /bin/cat >$OC_PATH$FILE <<EOL
 <?php
 \$AUTOCONFIG = array(
   "directory"     => "/data",
@@ -100,7 +100,7 @@ EOL
                     echo "set PostgreSQL Database Name to: postgres"
                     DB_NAME=postgres
             fi
-            /bin/cat >$PATH$FILE <<EOL
+            /bin/cat >$OC_PATH$FILE <<EOL
 <?php
 \$AUTOCONFIG = array(
   "directory"     => "/data",
@@ -116,7 +116,7 @@ EOL
             ;;
         ext_mysql)
             echo 'using external MYSQL DB'
-            /bin/cat >$PATH$FILE <<EOL
+            /bin/cat >$OC_PATH$FILE <<EOL
 <?php
 \$AUTOCONFIG = array(
   "directory"     => "/data",
@@ -194,21 +194,23 @@ fi
 
 if [ -f /data/backup/config.php ]; then
     echo "found backup file -> restore"
-    /bin/cp /data/backup/config.php $PATH/config.php
-    /bin/chown nginx:nginx $PATH/config.php
-    /bin/rm $PATH/autoconfig.php
+    source /data/backup/oc_env.conf
+    /bin/cp /data/backup/config.php $OC_PATH/config.php
+    /bin/chown nginx:nginx $OC_PATH/config.php
+    /bin/rm $OC_PATH/autoconfig.php
 else
     echo "create backup"
+    /bin/echo "OC_PATH=$OC_PATH" > /data/backup/oc_env.conf && /bin/chown nginx:nginx /data/backup/oc_env.conf
     /bin/mkdir /data/backup && /bin/chown -R nginx:nginx $_
-    while [ ! -f "$PATH/config.php" ]
+    while [ ! -f "$OC_PATH/config.php" ]
       do
         /bin/sleep 1
       done
-    until /bin/grep installed $PATH/config.php
+    until /bin/grep installed $OC_PATH/config.php
       do
         /bin/sleep 1
       done
-    /bin/cp $PATH/config.php /data/backup/ && /bin/chown nginx:nginx /data/backup/config.php
+    /bin/cp $OC_PATH/config.php /data/backup/ && /bin/chown nginx:nginx /data/backup/config.php
 fi
 
 wait
