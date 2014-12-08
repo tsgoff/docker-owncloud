@@ -200,8 +200,8 @@ if [ -f /data/backup/config.php ]; then
     /bin/rm $OC_PATH/autoconfig.php
 else
     echo "create backup"
-    /bin/echo "OC_PATH=$OC_PATH" > /data/backup/oc_env.conf && /bin/chown nginx:nginx /data/backup/oc_env.conf
     /bin/mkdir /data/backup && /bin/chown -R nginx:nginx $_
+    /bin/echo "OC_PATH=$OC_PATH" > /data/backup/oc_env.conf && /bin/chown nginx:nginx /data/backup/oc_env.conf
     while [ ! -f "$OC_PATH/config.php" ]
       do
         /bin/sleep 1
