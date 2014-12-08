@@ -1,7 +1,7 @@
 owncloud
 ========
 
-https://registry.hub.docker.com/u/bios/owncloud/
+https://registry.hub.docker.com/u/bios/docker-owncloud/
 
 **Docker image to start a ownCloud container with CentOS, Nginx, fpm**
 
