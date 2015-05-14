@@ -10,6 +10,7 @@ if [ -e /INSTALLED ]; then
   echo "restart check: installed"
 else
   echo "starting installation"
+  /bin/sed -i '/default_charset = "UTF-8"/a default_charset = "UTF-8"' /etc/php.ini
     if [ -z "$OC_RELATIV_URL_ROOT" ]; then
             echo "install in Document Root"
     else
