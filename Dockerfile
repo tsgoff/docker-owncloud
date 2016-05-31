@@ -5,8 +5,8 @@
 FROM centos:centos6 
 MAINTAINER Tobias Sgoff
 
-#RUN yum -y update
-RUN yum -y install https://anorien.csc.warwick.ac.uk/mirrors/epel/6/i386/epel-release-6-8.noarch.rpm
+RUN yum -y update
+RUN yum -y install epel-release
 RUN yum -y install http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 
 RUN yum -y install nginx wget tar bzip2 unzip
