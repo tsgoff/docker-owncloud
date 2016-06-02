@@ -2,12 +2,12 @@
 
 # Centos OwnCloud latest 
 
-FROM centos:centos6 
+FROM centos:centos7 
 MAINTAINER Tobias Sgoff
 
 RUN yum -y update
 RUN yum -y install epel-release
-RUN yum -y install http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+RUN yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 
 RUN yum -y install nginx wget tar bzip2 unzip
 RUN yum -y install php-fpm php-gd php-mysqlnd php-pgsql php-mbstring php-xml php-ldap --enablerepo=remi
@@ -22,7 +22,6 @@ RUN mv owncloud /usr/share/nginx/
 RUN chown -R nginx:nginx /usr/share/nginx/owncloud
 RUN rm owncloud-latest.zip 
 ADD default.conf /etc/nginx/conf.d/default.conf 
-RUN service nginx start && service php-fpm start
 
 ADD init.sh /init.sh
 RUN chmod +x /init.sh
