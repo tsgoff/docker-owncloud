@@ -72,3 +72,13 @@ Install php to use occ
 
     docker exec owncloud yum -y install php56 php56-php-pdo php56-mysqlnd-qc-panel php56-php-mysqlnd php56-php-gd php56-php-mbstring 
     docker exec owncloud sudo -u nginx /usr/bin/php56 /usr/share/nginx/owncloud/oc/occ status
+
+
+Upgrade
+--------------------------
+
+    docker stop owncloud 
+    docker rename owncloud owncloud_backup 
+    docker pull bios/docker-owncloud:latest 
+    -> do a new docker run
+    -> do a occ upgrade
