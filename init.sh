@@ -48,7 +48,7 @@ else
             DB_TYPE=ext_mysql
     fi
 
-    /bin/mkdir /data
+    /bin/mkdir -p /data
     /bin/chown -R nginx:nginx /data
 
     function fixperm {
