@@ -65,3 +65,10 @@ Example with linked MySQL, custom path, custom SSL version / ciphers and custom 
     -e SSL_CIPHERS='AES256+EECDH:AES256+EDH' \
     -e OC_RELATIV_URL_ROOT='/oc' \
     -e FQDN='my.hostname.tld' -p 443:443 --link ownmysql:mysql bios/docker-owncloud
+
+occ usage
+---------
+Install php to use occ
+
+    docker exec owncloud yum -y install php56 php56-php-pdo php56-mysqlnd-qc-panel php56-php-mysqlnd php56-php-gd php56-php-mbstring 
+    docker exec owncloud sudo -u nginx /usr/bin/php56 /usr/share/nginx/owncloud/oc/occ status

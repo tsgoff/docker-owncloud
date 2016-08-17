@@ -9,7 +9,7 @@ RUN yum -y update
 RUN yum -y install epel-release
 RUN yum -y install http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 
-RUN yum -y install nginx wget tar bzip2 unzip
+RUN yum -y install nginx wget tar bzip2 unzip sudo
 RUN yum -y install php-fpm php-gd php-mysqlnd php-pgsql php-mbstring php-xml php-ldap --enablerepo=remi
 RUN sed -i 's/user = apache/user = nginx/' /etc/php-fpm.d/www.conf
 RUN sed -i 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf
