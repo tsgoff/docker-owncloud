@@ -22,6 +22,14 @@ RUN mv owncloud /usr/share/nginx/
 RUN chown -R nginx:nginx /usr/share/nginx/owncloud
 RUN rm owncloud-latest.zip 
 ADD default.conf /etc/nginx/conf.d/default.conf 
+
+RUN echo "env[HOSTNAME] = $HOSTNAME" >> /etc/php-fpm.d/www.conf
+RUN echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php-fpm.d/www.conf
+RUN echo "env[TMP] = /tmp" >> /etc/php-fpm.d/www.conf
+RUN echo "env[TMPDIR] = /tmp" >> /etc/php-fpm.d/www.conf
+RUN echo "env[TEMP] = /tmp" >> /etc/php-fpm.d/www.conf
+
+
 RUN service nginx start && service php-fpm start
 
 ADD init.sh /init.sh
