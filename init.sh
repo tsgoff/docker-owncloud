@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#9.1.0
+#9.1.3
 
 FILE=autoconfig.php
 OC_PATH=/usr/share/nginx/owncloud/config/
