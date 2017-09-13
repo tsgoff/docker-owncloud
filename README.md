@@ -1,11 +1,11 @@
 no longer maintained
 ----------
 please check
-https://hub.docker.com/r/sameersbn/owncloud/
-https://hub.docker.com/_/owncloud/
-
-https://hub.docker.com/r/sameersbn/nextcloud/
-https://hub.docker.com/_/nextcloud/
+https://hub.docker.com/r/sameersbn/owncloud/ 
+https://hub.docker.com/_/owncloud/ 
+ 
+https://hub.docker.com/r/sameersbn/nextcloud/ 
+https://hub.docker.com/_/nextcloud/ 
 
 
 
